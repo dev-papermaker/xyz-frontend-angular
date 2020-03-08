@@ -1,4 +1,23 @@
-
+<header>
+    <div class="header-wrapper">
+        <img src="assets/img/logo.png" (click)="goToIndex()">
+        <div class="side-name" (click)="goToIndex()">XYZ</div>
+        <div class="currency-nav">
+            <div class="btn-group" dropdown>
+                <button id="button-animated" dropdownToggle type="button" class="btn btn-primary dropdown-toggle" aria-controls="dropdown-animated">
+                    <span class="drop-label">Current base：</span>
+                    {{currentbase}} <span class="caret"></span>
+                </button>
+                <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu"
+                    role="menu" aria-labelledby="button-animated">
+                    <li role="menuitem"><a class="dropdown-item" (click)="switchBase('AUD')" href="javaScript:void(0)">AUD</a></li>
+                    <li role="menuitem"><a class="dropdown-item" (click)="switchBase('USD')" href="javaScript:void(0)">USD</a></li>
+                    <li role="menuitem"><a class="dropdown-item" (click)="switchBase('CNY')" href="javaScript:void(0)">CNY</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
 <div class="main-content">
     <router-outlet></router-outlet>
 </div>

@@ -13,7 +13,21 @@ export class AppComponent {
     public title = 'xyz-frontend-angular';
     public currentbase: any = 'AUD';
 
-    
+    switchBase(base) {
+      this.currentbase = base
+      let queryParams: NavigationExtras = {
+        queryParams: {
+          base: base
+        }
+      }
+      this.router.navigate(['product-list'], queryParams)
+    }
+
+    goToIndex() {
+      this.currentbase = 'AUD'
+      this.router.navigate(['product-list'])
+    }
+
     constructor(public router: Router) {
     }
 
