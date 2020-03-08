@@ -1,0 +1,30 @@
+<div *ngIf="isModalShown" [config]="{ show: true, backdrop: 'static', keyboard: false }" bsModal
+     class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-auto-name">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-auto-name" class="modal-title pull-left">Tip</h4>
+      </div>
+      <div class="modal-body">
+        数据读取中<span class="ani_dot">...</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-list-wrapper">
+    <div class="product-item" *ngFor="let item of products">
+        <div class="product-name">{{item.name}}</div>
+        <div class="product-content">
+            <div class="product-des">{{item.description}}</div>
+            <div class="product-price">
+                <span>{{item.price.base}}</span>
+                <span style="padding-left: 5px;">{{item.price.amount}}</span>
+            </div>
+            <div class="product-operate">
+                <button type="button" class="btn btn-primary" (click)="handleView(item)">View Product</button>
+                <button type="button" class="btn btn-success" (click)="handleEdit(item)">Edit Product</button>
+            </div>
+        </div>
+    </div>
+</div>
