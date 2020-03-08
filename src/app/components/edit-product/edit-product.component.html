@@ -1,0 +1,68 @@
+
+<div class="edit-product-wrapper">
+    <form>
+        <div class="form-group">
+          <label>Product ID</label>
+          <input type="text" [(ngModel)]="currentProduct.id" class="form-control" name="id" required #id="ngModel">
+          <div *ngIf="id.invalid && id.dirty"
+                class="alert alert-danger">
+            <div *ngIf="id.errors.required">
+                ID is required.
+            </div>
+            </div>
+        </div>
+        <div class="form-group">
+          <label>Product name</label>
+          <input type="text" [(ngModel)]="currentProduct.name" minlength="3" class="form-control" name="productName" #productName="ngModel" required>
+          <div *ngIf="productName.invalid && productName.dirty"
+                class="alert alert-danger">
+                <div *ngIf="productName.errors.required">
+                    Product name is required.
+                </div>
+                <div *ngIf="productName.errors.minlength">
+                    Product name must be at least 3 characters long.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Currency base</label>
+            <div class="base-radio-group">
+                <label class="form-check-label" for="AUD">
+                    <input type="radio" [(ngModel)]="currentProduct.price.base" name="CurrencyBase" id="AUD" value="AUD">
+                    AUD
+                </label>
+                <label class="form-check-label" for="USD">
+                    <input type="radio" [(ngModel)]="currentProduct.price.base" name="CurrencyBase" id="USD" value="USD">
+                    USD
+                </label>
+                <label class="form-check-label" for="CNY">
+                    <input type="radio" [(ngModel)]="currentProduct.price.base" name="CurrencyBase" id="CNY" value="CNY">
+                    CNY
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Price</label>
+            <input type="number" [(ngModel)]="currentProduct.price.amount" class="form-control" name="price">
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea [(ngModel)]="currentProduct.description" class="form-control" rows="3" name="description" required #description="ngModel"></textarea>
+            <div *ngIf="description.invalid && description.dirty"
+                class="alert alert-danger">
+                <div *ngIf="description.errors.required">
+                    Description is required.
+                </div>
+            </div>
+        </div>
+        <label>Related products</label>
+        <div class="form-group">
+            <div class="form-check form-check-inline" *ngFor="let item of otherProducts">
+                <input type="checkbox" class="form-check-input" (click)="handleBoxChange($event, item.id)" name="relatedProducts" [id]="item.id" [value]="item.relatedProducts" [checked]="currentProduct.relatedProducts.indexOf(item.id) > -1">
+                <label class="form-check-label" [for]="item.id">{{item.id}}-{{item.name}}</label>
+            </div>
+        </div>
+        <button type="button" (click)="handleSave()" class="btn btn-primary">SAVE</button>
+        <button type="button" (click)="goBack()" class="btn btn-secondary" style="margin-left: 10px;">BACK TO HOMEPAGE</button>
+    </form>
+</div>
